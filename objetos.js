@@ -9,11 +9,11 @@ person.eyeColor = "Brown";
 // Ambas declaraciones definen lo mismo, no hay necesidad de usar new Objetct()
 
 var person = {
-    firstName : "Lucas",
-    lastName : "Guerra",
-    age : 10,
-    eyeColor : "Marrones",
-    fullName : function() {
+    firstName: "Lucas",
+    lastName: "Guerra",
+    age: 10,
+    eyeColor: "Marrones",
+    fullName: function() {
         return this.firstName + " " + this.lastName;
     }
 };
@@ -29,7 +29,7 @@ var txt = "";
 // Parecido al for in de Python
 for (data in person) {
     txt += person[data] + " ";
-    
+
 }
 console.log(txt); // con la funcion de nombre completo , nos la muestra entera.
 
@@ -44,7 +44,7 @@ console.log(person.fullName());
 
 // tambien podemos agregar metodos al objeto 
 person.detalle = function() {
-    return "Nombre y apellido: " + this.fullName() + "\n" + "Edad: " + this.age; 
+    return "Nombre y apellido: " + this.fullName() + "\n" + "Edad: " + this.age;
 }
 
 console.log("Imprimiendo el metodo que agregamos recien.. \n" + person.detalle());
@@ -55,7 +55,7 @@ var person2 = {
     lastName: "Guerra",
     age: 28,
     ocupation: "ninguna",
-    get fullName(){
+    get fullName() {
         return this.firstName + " " + this.lastName;
     },
     set ocu(ocu) {
@@ -78,3 +78,25 @@ console.log(person2.ocupation);
 //     It can secure better data quality
 //     It is useful for doing things behind-the-scene
 
+//ejemplo de constructores
+// BluePrints o directamente Classes
+function GenericPerson(first, last, age, eye) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eye;
+    this.name = function() { return this.firstName + " " + this.lastName; };
+}
+
+// objeto como instancia de clase
+var me = new GenericPerson("Lucas", "Guerra", 28, "Marrones");
+console.log(me.firstName);
+
+//You cannot add a new property to an object constructor the same way you add a new property to an existing object:
+//GenericPerson.nationality = "Argentino";  esto rompe que da calambre
+GenericPerson.prototype.nationality = "Default"; // Ahora, con prototype te cagas en todo
+
+console.log(me.nationality);
+
+// ES5 
+console.log(Object.getOwnPropertyNames(GenericPerson));
