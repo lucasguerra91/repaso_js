@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body {
+        background-color: black;
+    }
+    
+    h2 {
+        color: green;
+        font-size: 22px;
+    }
+    
+    p {
+        color: blue;
+        font-size: 16px;
+    }
+</style>
+
+<body>
+
+    <h2>Store and retrieve data from local storage.</h2>
+
+    <p id="demo"></p>
+
+    <script>
+        var myObj, myJSON, text, obj;
+
+        // Storing data:
+        myObj = {
+            name: "John",
+            age: 31,
+            city: "New York"
+        };
+        myJSON = JSON.stringify(myObj);
+        localStorage.setItem("testJSON", myJSON);
+
+        // Retrieving data:
+        text = localStorage.getItem("testJSON");
+        obj = JSON.parse(text);
+        document.getElementById("demo").innerHTML = obj.name;
+    </script>
+
+    <h2>Create Object from JSON String</h2>
+
+    <p id="demo2"></p>
+
+    <script>
+        var txt = '{"name":"John", "age":30, "city":"New York"}'
+        var obj = JSON.parse(txt);
+        document.getElementById("demo2").innerHTML = obj.name + ", " + obj.age;
+    </script>
+
+    <h2>Use the XMLHttpRequest to get the content of a file.</h2>
+    <p>The content is written in JSON format, and can easily be converted into a JavaScript object.</p>
+
+    <p id="demo3"></p>
+
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var myObj = JSON.parse(this.responseText);
+                document.getElementById("demo3").innerHTML = myObj.name;
+            }
+        };
+        xmlhttp.open("GET", "json_demo.txt", true);
+        xmlhttp.send();
+    </script>
+
+    <p>Take a look at <a href="json_demo.txt" target="_blank">json_demo.txt</a></p>
+
+
+    <!--Array as JSON
+        When using the JSON.parse() on a JSON derived from an array, 
+        the method will return a JavaScript array, instead of a JavaScript object. -->
+
+
+
+    <h2>Convert a string into a date object.</h2>
+    <!-- Parsing dates.
+        Dates objects are not allowed in Json. If you need to include a date, wirte it as a string.
+        You can convert it back into a date objetc later       -->
+
+    <p id="demo4"></p>
+
+    <script>
+        var text = '{"name":"John", "birth":"1986-12-14", "city":"New York"}';
+        var obj = JSON.parse(text);
+        obj.birth = new Date(obj.birth);
+        document.getElementById("demo4").innerHTML = obj.name + ", " + obj.birth;
+    </script>
+
+
+
+
+</body>
+
+</html>
