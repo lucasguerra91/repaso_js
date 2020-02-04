@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
-let dev_db_url = 'mongodb://testing:test123@ds315359.mlab.com:15359/testing';
+let dev_db_url = 'mongodb://testing:test123@ds315359.mlab.com:15359/testing'; // maximo de 0.5 gb
 let mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
