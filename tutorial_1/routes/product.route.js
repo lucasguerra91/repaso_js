@@ -17,6 +17,9 @@ router.post('/create', product_controller.product_create);
 // actualizar
 router.put('/:id/update', product_controller.product_update);
 
+//delete
+router.delete('/:id/delete', product_controller.product_delete);
+
 
 // lo exporto para que los demas modulos puedan usarlo
 module.exports = router;

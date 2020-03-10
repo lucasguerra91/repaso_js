@@ -22,6 +22,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/products', product);
 
+app.get('/', (req, res) => {
+    console.log(req.protocol);
+    console.log(req.route);
+    res.send("Hello");
+});
+
+
 let port = 3000;
 
 app.listen(port, () => {
